@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>RICH;Lash 美睫報價計算</title>
+<style>
+:root{--bg:#faf6f3;--card:#fff;--tx:#3a2f2c;--mu:#9a8b85;--ac:#c98a8a;--ac2:#f3e3e1;--bd:#eadfda;--ok:#6b8f71;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#1d1817;--card:#2a2321;--tx:#f1e8e4;--mu:#a89791;--ac:#d9a0a0;--ac2:#3a2d2b;--bd:#3d3330;--ok:#8fb596}}
+:root[data-theme="dark"]{--bg:#1d1817;--card:#2a2321;--tx:#f1e8e4;--mu:#a89791;--ac:#d9a0a0;--ac2:#3a2d2b;--bd:#3d3330;--ok:#8fb596}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:var(--bg);color:var(--tx);font-family:-apple-system,"PingFang TC","Noto Sans TC","Microsoft JhengHei",sans-serif;padding-bottom:230px}
+header{display:flex;justify-content:space-between;align-items:center;padding:18px 18px 8px;max-width:640px;margin:auto}
+h1{font-size:22px;letter-spacing:2px;margin:0;font-weight:700}h1 small{display:block;font-size:11px;color:var(--mu);letter-spacing:3px;font-weight:400}
+button{font:inherit;color:inherit;cursor:pointer}
+.ic{background:var(--card);border:1px solid var(--bd);border-radius:50%;width:40px;height:40px;font-size:18px}
+main{max-width:640px;margin:auto;padding:8px 14px}
+.card{background:var(--card);border:1px solid var(--bd);border-radius:18px;padding:14px 14px 6px;margin-bottom:12px}
+.card h2{font-size:15px;margin:0 0 8px;color:var(--ac);letter-spacing:1px}
+.it{display:flex;align-items:center;justify-content:space-between;padding:10px 0;border-top:1px dashed var(--bd);gap:8px}
+.it:first-of-type{border-top:0}
+.nm{flex:1;font-size:15px}.pr{color:var(--mu);font-size:13px;margin-top:2px}
+.st{display:flex;align-items:center;gap:10px}
+.st button{width:32px;height:32px;border-radius:50%;border:1px solid var(--bd);background:var(--ac2);font-size:18px;line-height:1}
+.st b{min-width:16px;text-align:center}
+.it.on .nm{color:var(--ac);font-weight:600}
+.bar{position:fixed;left:0;right:0;bottom:0;background:var(--card);border-top:1px solid var(--bd);border-radius:22px 22px 0 0;padding:12px 16px calc(12px + env(safe-area-inset-bottom,0px));box-shadow:0 -6px 24px rgba(0,0,0,.08);z-index:5}
+.in{max-width:640px;margin:auto}
+.row{display:flex;align-items:center;justify-content:space-between;gap:8px;font-size:14px;margin-bottom:8px}
+.row label{display:flex;align-items:center;gap:6px}
+input[type=number],input[type=text],textarea{font:inherit;color:var(--tx);background:var(--bg);border:1px solid var(--bd);border-radius:10px;padding:6px 8px}
+.row input[type=number]{width:90px;text-align:right}
+.pill{border:1px solid var(--bd);background:var(--ac2);border-radius:999px;padding:3px 10px;font-size:12px;color:var(--mu)}
+.tot{display:flex;justify-content:space-between;align-items:baseline;margin:6px 0 10px}
+.tot span{font-size:14px;color:var(--mu)}.tot b{font-size:32px;color:var(--ac)}
+.btns{display:flex;gap:8px}
+.btns button,.m button.p{flex:1;padding:11px;border-radius:12px;border:1px solid var(--bd);background:var(--card);font-size:14px}
+.btns .main,.m button.p{background:var(--ac);color:#fff;border-color:var(--ac)}
+.mask{position:fixed;inset:0;background:rgba(0,0,0,.45);display:none;z-index:9;align-items:flex-end;justify-content:center}
+.mask.show{display:flex}
+.m{background:var(--bg);width:100%;max-width:640px;max-height:90%;overflow:auto;border-radius:22px 22px 0 0;padding:18px 16px calc(18px + env(safe-area-inset-bottom,0px))}
+.m h3{margin:0 0 4px}.m p.h{font-size:12px;color:var(--mu);margin:0 0 12px;line-height:1.5}
+.q{display:flex;justify-content:space-between;padding:7px 0;border-bottom:1px dashed var(--bd);font-size:14px}
+.q.s{color:var(--mu)}.q.t{font-weight:700;color:var(--ac);border:0;font-size:16px}
+.ad .card{padding:12px}
+.ad input[type=text]{width:100%;margin-bottom:6px}
+.ad .l{display:flex;gap:6px;margin-bottom:6px}.ad .l input[type=text]{margin:0}.ad .l .pi{width:90px;flex:none}
+.ad .x{border:0;background:none;color:#c0605a;font-size:18px}
+.ad .sm{border:1px dashed var(--ac);background:none;color:var(--ac);border-radius:10px;padding:6px 10px;font-size:13px}
+textarea{width:100%;height:90px;margin:6px 0;font-size:12px}
+.mf{display:flex;gap:8px;margin-top:12px}.mf button{flex:1;padding:11px;border-radius:12px;border:1px solid var(--bd);background:var(--card)}
+.toast{position:fixed;top:calc(env(safe-area-inset-top,0px) + 14px);left:50%;transform:translateX(-50%);background:var(--tx);color:var(--bg);padding:8px 16px;border-radius:999px;font-size:13px;display:none;z-index:20}
+</style>
+</head>
+<body>
+<header><h1>RICH;Lash<small>EYELASH QUOTE</small></h1><button class="ic" id="gear" aria-label="後台管理">⚙️</button></header>
+<main id="cards"></main>
+
+<div class="bar"><div class="in">
+ <div class="row"><label>預收定金 <input type="number" id="dep" inputmode="numeric" min="0" placeholder="0"></label>
+  <label><input type="checkbox" id="fee"> ＋10% 服務費</label></div>
+ <div class="row"><label>優惠活動 <input type="number" id="dis" inputmode="numeric" min="0" placeholder="0"><span id="dm"></span></label>
+  <button class="pill" id="mode">目前為折抵現金</button></div>
+ <div class="tot"><span>應付尾款</span><b id="bal">$0</b></div>
+ <div class="btns"><button id="rst">↺ 重置選項</button><button id="cp">📋 複製文字</button><button class="main" id="vw">👁️ 查看明細</button></div>
+</div></div>
+
+<div class="mask" id="qm"><div class="m"><h3>報價單</h3><div id="ql"></div><div class="mf"><button id="qc">關閉</button><button class="p" id="qcp">複製文字</button></div></div></div>
+
+<div class="mask" id="am"><div class="m ad"><h3>後台管理</h3>
+ <p class="h">系統基礎管理。細項與價格儲存在這個瀏覽器，建議定期複製備份文字另存到備忘錄或雲端。</p>
+ <div id="ed"></div>
+ <button class="sm" id="addc">＋ 新增小卡</button>
+ <p class="h" style="margin-top:14px">備份 / 還原</p>
+ <textarea id="bk" placeholder="匯出的備份文字會顯示在這裡；匯入時貼上備份文字"></textarea>
+ <div class="mf"><button id="ex">匯出備份</button><button id="im">匯入備份</button></div>
+ <div class="mf"><button id="ac">取消</button><button class="p" id="as">儲存變更</button></div>
+</div></div>
+<div class="toast" id="ts"></div>
+
+<script>
+var KEY='lash_cfg_v1';
+var DEF=[
+{n:'嫁接款式',i:[['自然款（單根）',1000],['濃密款（2D–3D）',1300],['超濃密款（4D–6D）',1600],['山茶花款',1500],['貓眼款',1400]]},
+{n:'加購項目',i:[['下睫毛',300],['彩色睫毛',200],['鑽飾 / 點綴',100]]},
+{n:'補睫 / 卸除',i:[['補睫（3 週內）',700],['補睫（4 週內）',900],['卸睫毛',200],['他牌卸除',300]]},
+{n:'保養',i:[['睫毛護理',250],['睫毛膏塗刷',150]]}
+];
+var cfg,qty={},mode='cash',draft;
+function load(){try{var s=localStorage.getItem(KEY);if(s){cfg=JSON.parse(s);return}}catch(e){}
+ cfg=DEF.map(function(c,a){return{n:c.n,i:c.i.map(function(x,b){return{id:'d'+a+'_'+b,n:x[0],p:x[1]}})}})}
+function save(){try{localStorage.setItem(KEY,JSON.stringify(cfg))}catch(e){}}
+function $(i){return document.getElementById(i)}
+function esc(s){return String(s).replace(/[&<>"]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})}
+function money(n){return '$'+Math.round(n).toLocaleString('en-US')}
+function render(){
+ $('cards').innerHTML=cfg.map(function(c){return '<section class="card"><h2>'+esc(c.n)+'</h2>'+c.i.map(function(x){var q=qty[x.id]||0;
+  return '<div class="it'+(q?' on':'')+'"><div class="nm">'+esc(x.n)+'<div class="pr">'+money(x.p)+'</div></div><div class="st">'+(q?'<button data-d="-1" data-id="'+x.id+'">−</button><b>'+q+'</b>':'')+'<button data-d="1" data-id="'+x.id+'">＋</button></div></div>'}).join('')+'</section>'}).join('');
+ calc()}
+function calc(){
+ var sub=0,lines=[];cfg.forEach(function(c){c.i.forEach(function(x){var q=qty[x.id]||0;if(q){sub+=q*x.p;lines.push({n:x.n,q:q,s:q*x.p})}})});
+ var fee=$('fee').checked?sub*0.1:0,dv=Math.max(0,+$('dis').value||0),dep=Math.max(0,+$('dep').value||0),d=0;
+ if(mode==='cash')d=dv;else if(dv>0&&dv<10)d=(sub+fee)*(1-dv/10);
+ d=Math.min(d,sub+fee);var tot=sub+fee-d,bal=Math.max(0,tot-dep);
+ $('bal').textContent=money(bal);
+ return{sub:sub,fee:fee,d:d,dep:dep,tot:tot,bal:bal,lines:lines}}
+function text(){var r=calc();if(!r.lines.length)return '';
+ var t='【RICH;Lash 美睫報價單】\n';r.lines.forEach(function(l){t+=l.n+(l.q>1?' ×'+l.q:'')+'  '+money(l.s)+'\n'});
+ t+='────────\n小計 '+money(r.sub)+'\n';if(r.fee)t+='服務費 10% +'+money(r.fee)+'\n';if(r.d)t+='優惠折抵 -'+money(r.d)+'\n';
+ t+='總金額 '+money(r.tot)+'\n';if(r.dep)t+='已收定金 -'+money(r.dep)+'\n';return t+'應付尾款 '+money(r.bal)}
+function toast(m){var e=$('ts');e.textContent=m;e.style.display='block';setTimeout(function(){e.style.display='none'},1600)}
+function copy(s){if(!s){toast('尚未選擇項目');return}
+ function fb(){var a=document.createElement('textarea');a.value=s;document.body.appendChild(a);a.select();try{document.execCommand('copy');toast('已複製')}catch(e){toast('複製失敗')}a.remove()}
+ try{navigator.clipboard.writeText(s).then(function(){toast('已複製')},fb)}catch(e){fb()}}
+$('cards').onclick=function(e){var b=e.target.closest('button');if(!b)return;var id=b.dataset.id;qty[id]=Math.max(0,(qty[id]||0)+ +b.dataset.d);render()};
+$('fee').onchange=$('dis').oninput=$('dep').oninput=calc;
+$('mode').onclick=function(){mode=mode==='cash'?'pct':'cash';this.textContent=mode==='cash'?'目前為折抵現金':'目前為折數（例：9 = 9折）';$('dm').textContent=mode==='cash'?'元':'折';calc()};
+$('dm').textContent='元';
+$('rst').onclick=function(){qty={};$('dep').value='';$('dis').value='';$('fee').checked=false;render()};
+$('cp').onclick=$('qcp').onclick=function(){copy(text())};
+$('vw').onclick=function(){var r=calc();if(!r.lines.length){toast('尚未選擇項目');return}
+ var h=r.lines.map(function(l){return '<div class="q"><span>'+esc(l.n)+(l.q>1?' ×'+l.q:'')+'</span><span>'+money(l.s)+'</span></div>'}).join('');
+ h+='<div class="q s"><span>小計</span><span>'+money(r.sub)+'</span></div>';
+ if(r.fee)h+='<div class="q s"><span>服務費 10%</span><span>+'+money(r.fee)+'</span></div>';
+ if(r.d)h+='<div class="q s"><span>優惠折抵</span><span>-'+money(r.d)+'</span></div>';
+ h+='<div class="q s"><span>總金額</span><span>'+money(r.tot)+'</span></div>';
+ if(r.dep)h+='<div class="q s"><span>已收定金</span><span>-'+money(r.dep)+'</span></div>';
+ h+='<div class="q t"><span>應付尾款</span><span>'+money(r.bal)+'</span></div>';
+ $('ql').innerHTML=h;$('qm').classList.add('show')};
+$('qc').onclick=function(){$('qm').classList.remove('show')};
+/* admin */
+function edit(){$('ed').innerHTML=draft.map(function(c,a){return '<div class="card"><div class="l"><input type="text" data-a="'+a+'" data-f="cn" value="'+esc(c.n)+'" placeholder="小卡名稱"><button class="x" data-a="'+a+'" data-act="dc">🗑</button></div>'+
+ c.i.map(function(x,b){return '<div class="l"><input type="text" data-a="'+a+'" data-b="'+b+'" data-f="in" value="'+esc(x.n)+'" placeholder="項目"><input class="pi" type="number" inputmode="numeric" data-a="'+a+'" data-b="'+b+'" data-f="ip" value="'+x.p+'"><button class="x" data-a="'+a+'" data-b="'+b+'" data-act="di">✕</button></div>'}).join('')+
+ '<button class="sm" data-a="'+a+'" data-act="ai">＋ 新增項目</button></div>'}).join('')}
+$('gear').onclick=function(){draft=JSON.parse(JSON.stringify(cfg));$('bk').value='';edit();$('am').classList.add('show')};
+$('ed').oninput=function(e){var t=e.target,a=t.dataset.a,b=t.dataset.b,f=t.dataset.f;if(f==='cn')draft[a].n=t.value;else if(f==='in')draft[a].i[b].n=t.value;else if(f==='ip')draft[a].i[b].p=+t.value||0};
+$('ed').onclick=function(e){var t=e.target.closest('button');if(!t)return;var a=t.dataset.a,b=t.dataset.b,k=t.dataset.act;
+ if(k==='dc'){if(confirm('刪除這張小卡？'))draft.splice(a,1)}else if(k==='di')draft[a].i.splice(b,1);else if(k==='ai')draft[a].i.push({id:'n'+Date.now(),n:'',p:0});edit()};
+$('addc').onclick=function(){draft.push({n:'新小卡',i:[{id:'n'+Date.now(),n:'',p:0}]});edit()};
+$('ac').onclick=function(){$('am').classList.remove('show')};
+$('as').onclick=function(){cfg=draft.map(function(c){return{n:c.n,i:c.i.filter(function(x){return x.n.trim()})}});save();qty={};render();$('am').classList.remove('show');toast('已儲存')};
+$('ex').onclick=function(){$('bk').value=JSON.stringify(draft);$('bk').select();copy($('bk').value)};
+$('im').onclick=function(){try{var d=JSON.parse($('bk').value);if(!Array.isArray(d))throw 0;draft=d;edit();toast('已匯入，請按儲存變更')}catch(e){toast('備份格式錯誤')}};
+load();render();
+</script>
+</body>
+</html>
